@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +14,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    $customers = DB::table('sales.customers')
-                -> select('customer_id','first_name','last_name','phone','email','street','city','state','zip_code')
-                -> where('customer_id','>=',261)
-                -> where('customer_id','<=',280)
-                -> get();
-    return view('welcome',["customers" => $customers]);
-});
+
+Route::get('/', [CustomerController::class, 'index']);
 
 
